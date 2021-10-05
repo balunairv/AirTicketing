@@ -4,6 +4,10 @@
  */
 package AirTicketing;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author acer
@@ -85,8 +89,30 @@ public class AdminLogin extends javax.swing.JFrame {
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
                String username = txtbx_username.getText();
                String password = txtbx_password.getText();
-               System.out.println(username);
-               System.out.println(password);
+               dbconnect conn = new dbconnect();
+        try {
+            PreparedStatement ps = conn.con.prepareStatement("select * from admin where (username=? and password=?)");
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Succesfully Logged In");
+                AdminHome obj = new AdminHome();
+                obj.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "UserName or Password is incorrect");
+            };
+        } catch (Exception e) {
+            System.out.println("Error found" + e);
+        }
+
+ 
+               
+               
+              
+               
+               
 
 
     }//GEN-LAST:event_btn_loginActionPerformed
@@ -94,7 +120,7 @@ public class AdminLogin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main (String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

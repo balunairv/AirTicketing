@@ -4,10 +4,24 @@
  */
 package AirTicketing;
 
+import com.mysql.jdbc.Connection;
+import java.sql.*;
+
 /**
  *
  * @author acer
  */
 public class dbconnect {
-    
+    Connection con;
+public dbconnect(){
+    try{
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/atbs","root", "root");
+        System.out.println("Succesfully connected");
+
+}
+catch(Exception e){
+    System.out.println(e.toString());
+};
+}
 }
