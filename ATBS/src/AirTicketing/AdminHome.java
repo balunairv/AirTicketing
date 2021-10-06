@@ -4,6 +4,10 @@
  */
 package AirTicketing;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author acer
@@ -16,6 +20,23 @@ public class AdminHome extends javax.swing.JFrame {
     public AdminHome() {
         initComponents();
         this.setBounds(500, 200, 600, 500);
+        try {
+            dbconnect dbObj = new dbconnect();
+            PreparedStatement ps = dbObj.con.prepareStatement("select * from user");
+            ResultSet rs = ps.executeQuery();
+            DefaultTableModel td = new DefaultTableModel();
+            td = (DefaultTableModel) tbl_users.getModel();
+            td.setNumRows(0);
+            while (rs.next()) {
+                String name = rs.getString(1);
+                String number = rs.getString(2);
+                String email = rs.getString(3);
+                td.addRow(new Object[]{name,number,number});
+            };
+
+        } catch (Exception e) {
+            System.out.println("Error"+e);
+        };
     }
 
     /**
@@ -27,17 +48,63 @@ public class AdminHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_users = new javax.swing.JTable();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel1.setText("Admin HOme");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(230, 20, 180, 30);
+        tbl_users.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Name", "Phone number", "Email"
+            }
+        ));
+        jScrollPane1.setViewportView(tbl_users);
+
+        jPanel1.add(jScrollPane1);
+
+        jTabbedPane1.addTab("View Users", jPanel1);
+        jTabbedPane1.addTab("View Bookings", jTabbedPane2);
+
+        getContentPane().add(jTabbedPane1);
+        jTabbedPane1.setBounds(0, 0, 480, 280);
+
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("Quit");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -75,6 +142,14 @@ public class AdminHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTable tbl_users;
     // End of variables declaration//GEN-END:variables
 }

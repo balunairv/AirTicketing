@@ -19,7 +19,7 @@ public class AdminLogin extends javax.swing.JFrame {
      */
     public AdminLogin() {
         initComponents();
-        this.setBounds(500, 200, 600, 500);
+        this.setBounds(500, 200, 640, 360);
     }
 
     /**
@@ -38,14 +38,15 @@ public class AdminLogin extends javax.swing.JFrame {
         btn_login = new javax.swing.JButton();
         txtbx_password = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Ubuntu Light", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(121, 147, 230));
+        jLabel1.setForeground(new java.awt.Color(254, 254, 254));
         jLabel1.setText("AIR TICKET BOOKING SYSTEM");
-        jLabel1.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        jLabel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel1);
         jLabel1.setBounds(100, 10, 350, 50);
 
@@ -78,6 +79,10 @@ public class AdminLogin extends javax.swing.JFrame {
         txtbx_password.setBounds(250, 150, 220, 34);
         getContentPane().add(jLabel4);
         jLabel4.setBounds(200, 310, 49, 18);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AirTicketing/img/bg.jpg"))); // NOI18N
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, 0, 640, 360);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -158,6 +163,7 @@ public class AdminLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField txtbx_password;
     private javax.swing.JTextField txtbx_username;
     // End of variables declaration//GEN-END:variables
